@@ -1,0 +1,1 @@
+var app = angular.module('ng-calc', ['ngAnimate', 'ngTouch']);

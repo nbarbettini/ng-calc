@@ -1,0 +1,9 @@
+div.calculator-controls div.row div {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+div.calculator-controls button {
+	height: 60px;
+	border-radius: 0;
+}

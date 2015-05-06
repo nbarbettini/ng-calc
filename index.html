@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AngularJS Calculator</title>
+	
+    <link href="content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="content/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="content/css/ng-calc.css" rel="stylesheet">
+  </head>
+  <body data-ng-app="ng-calc">
+    <div class="container" data-ng-controller="calculatorController as vm">
+
+      <div class="jumbotron">
+        <h1>AngularJS Calculator</h1>
+      </div>
+  	  <div class="container">
+  		  <div class="row">
+  			  <div class="col-xs-12">
+                <div class="well well-lg">
+                    <div style="text-align: right;">{{vm.getDigits()}}</div>
+                </div>
+  			  </div>
+  		  </div>
+  		  <div class="row">
+  			  <div class="container calculator-controls">
+  				  <div class="row">
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.clear()">AC</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block">+/-</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block">%</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block btn-warning">&divide;</button>
+  					  </div>
+  				  </div>
+  				  <div class="row">
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(7)">7</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(8)">8</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(9)">9</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block btn-warning">&times;</button>
+  					  </div>
+  				  </div>
+  				  <div class="row">
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(4)">4</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(5)">5</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(6)">6</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block btn-warning">-</button>
+  					  </div>
+  				  </div>
+  				  <div class="row">
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(1)">1</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(2)">2</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(3)">3</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-lg btn-block btn-warning">+</button>
+  					  </div>
+  				  </div>
+  				  <div class="row">
+  					  <div class="col-xs-6">
+  						  <button type="button" class="btn btn-default btn-block" data-ng-click="vm.press(0)">0</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-default btn-block">.</button>
+  					  </div>
+  					  <div class="col-xs-3">
+  						  <button type="button" class="btn btn-default btn-block btn-primary">=</button>
+  					  </div>
+  				  </div>
+  			  </div>
+  		  </div>
+  	  </div>
+    </div>
+    
+    <!-- Angular libraries -->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-animate.min.js"></script>
+    <script src="scripts/angular-touch.min.js"></script>
+      
+    <script src="app/app.js"></script>
+    <script src="app/controllers/calculatorController.js"></script>
+    <script src="app/services/calculatorService.js"></script>
+  </body>
+</html>
