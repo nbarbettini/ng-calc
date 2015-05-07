@@ -1,1 +1,1 @@
-var app = angular.module('ng-calc', ['ngAnimate', 'ngTouch']);
+var app = angular.module('ng-calc', ['ngAnimate', 'ngTouch', 'ngSanitize']);

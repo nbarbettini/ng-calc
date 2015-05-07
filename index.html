@@ -10,17 +10,25 @@
     <link href="content/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="content/css/ng-calc.css" rel="stylesheet">
   </head>
-  <body data-ng-app="ng-calc">
-    <div class="container" data-ng-controller="calculatorController as vm">
-
+  <body data-ng-app="ng-calc"
+        data-ng-controller="calculatorController as vm" 
+        data-ng-keydown="vm.controlKeyHandler($event)"
+        data-ng-keypress="vm.keyHandler($event)">
+    <div class="container">
       <div class="jumbotron">
         <h1>AngularJS Calculator</h1>
       </div>
   	  <div class="container">
   		  <div class="row">
   			  <div class="col-xs-12">
-                <div class="well well-lg">
-                    <div style="text-align: right;">{{vm.getDigits()}}</div>
+                <div class="well well-lg calculator-display">
+                    <div>
+                        <span class="h2 pull-left">
+                            <span>{{vm.getStoredOperand()}}</span>
+                            <span data-ng-bind-html="vm.getOperator()"></span>
+                        </span>
+                        <span class="h2 pull-right">{{vm.getDigits()}}</span>
+                    </div>
                 </div>
   			  </div>
   		  </div>
@@ -37,7 +45,7 @@
   						  <button type="button" class="btn btn-lg btn-block">%</button>
   					  </div>
   					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning">&divide;</button>
+  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.divide()">&divide;</button>
   					  </div>
   				  </div>
   				  <div class="row">
@@ -51,7 +59,7 @@
   						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(9)">9</button>
   					  </div>
   					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning">&times;</button>
+  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.multiply()">&times;</button>
   					  </div>
   				  </div>
   				  <div class="row">
@@ -65,7 +73,7 @@
   						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(6)">6</button>
   					  </div>
   					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning">-</button>
+  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.minus()">-</button>
   					  </div>
   				  </div>
   				  <div class="row">
@@ -79,7 +87,7 @@
   						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(3)">3</button>
   					  </div>
   					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning">+</button>
+  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.plus()">+</button>
   					  </div>
   				  </div>
   				  <div class="row">
@@ -87,10 +95,10 @@
   						  <button type="button" class="btn btn-default btn-block" data-ng-click="vm.press(0)">0</button>
   					  </div>
   					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-default btn-block">.</button>
+  						  <button type="button" class="btn btn-default btn-block" data-ng-click="vm.press('.')">.</button>
   					  </div>
   					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-default btn-block btn-primary">=</button>
+  						  <button type="button" class="btn btn-default btn-block btn-primary" data-ng-click="vm.equals()">=</button>
   					  </div>
   				  </div>
   			  </div>
@@ -102,9 +110,10 @@
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/angular-animate.min.js"></script>
     <script src="scripts/angular-touch.min.js"></script>
+    <script src="scripts/angular-sanitize.min.js"></script>
       
     <script src="app/app.js"></script>
     <script src="app/controllers/calculatorController.js"></script>
-    <script src="app/services/calculatorService.js"></script>
+    <script src="app/services/digitService.js"></script>
   </body>
 </html>
