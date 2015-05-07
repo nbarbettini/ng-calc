@@ -2,9 +2,11 @@
 	'use strict';
 	
 	angular.module('ng-calc')
-	.controller('calculatorController',  ['digitService', function (digitService) {
+	.controller('calculatorController',  ['digitService', 'arithmeticService',
+	function (digitService, arithmeticService) {
 		var vm = this;
 		var _operator = '';
+		var _result = '';
 		
 		vm.keyHandler = function(keyEvent) {
 			var char = String.fromCharCode(keyEvent.which);
@@ -36,15 +38,20 @@
 			}
 		};
 		
-		vm.getDigits = function() { 
-			var value = digitService.currentValue().toString();
-			var decimalInValue = value.indexOf('.') > -1;
-			
-			// Display trailing decimal if value is "0."
-			if (digitService.decimalPresent() && !decimalInValue)
-				value += '.';
+		vm.getDigits = function() {
+			// Needs refactoring. Will make it pretty later :)
+			if (_result === '') {
+				var value = digitService.currentValue().toString();
+				var decimalInValue = value.indexOf('.') > -1;
 				
-			return value;
+				// Display trailing decimal if value is "0."
+				if (digitService.decimalPresent() && !decimalInValue)
+					value += '.';
+					
+				return value;
+			} else {
+				return _result;
+			}
 		};
 		
 		vm.getOperator = function() {
@@ -68,6 +75,7 @@
 		vm.clear = function() {
 			digitService.allClear();
 			_operator = '';
+			_result = '';
 		};
 		
 		// Operator buttons
@@ -89,7 +97,11 @@
 		};
 		
 		vm.equals = function() {
-			// execute	
+			_result = arithmeticService.compute(
+				digitService.getOperands()[0],
+				digitService.getOperands()[1],
+				_operator
+			);
 		};
 	}]);
 })();
