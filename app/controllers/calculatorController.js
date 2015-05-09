@@ -81,6 +81,7 @@
 			inputService.allClear();
 			_operator = '';
 			_result = '';
+			_resultPristine = false;
 		};
 		
 		// Operator buttons
