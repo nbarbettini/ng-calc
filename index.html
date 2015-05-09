@@ -14,11 +14,14 @@
         data-ng-controller="calculatorController as vm" 
         data-ng-keydown="vm.controlKeyHandler($event)"
         data-ng-keypress="vm.keyHandler($event)">
-    <div class="container">
-      <h1 class="text-center">
-        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> AngularJS Calculator
-      </div>
-      
+        
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <span class="navbar-brand"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> AngularJS Calculator</span>
+        </div>
+    </nav>
+    
+    <div class="container">     
       <div class="row">
           <div class="col-md-offset-3 col-md-6 col-sm-12">
       		  <div class="row">
