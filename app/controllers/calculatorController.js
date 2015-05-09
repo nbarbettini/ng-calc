@@ -2,14 +2,18 @@
 	'use strict';
 	
 	angular.module('ng-calc')
-	.controller('calculatorController',  ['digitService', 'arithmeticService',
-	function (digitService, arithmeticService) {
+	.controller('calculatorController',  ['inputService', 'arithmeticService', 'historyService',
+	function (inputService, arithmeticService, historyService) {
 		var vm = this;
 		var _operator = '';
 		var _result = '';
+		var _resultPristine = true;
 		
 		vm.keyHandler = function(keyEvent) {
 			var char = String.fromCharCode(keyEvent.which);
+			
+			if ('0123456789/*-+%'.indexOf(char) === -1) return;
+			
 			switch (char) {
 				case '+':
 					vm.plus();
@@ -39,19 +43,16 @@
 		};
 		
 		vm.getDigits = function() {
-			// Needs refactoring. Will make it pretty later :)
-			if (_result === '') {
-				var value = digitService.currentValue().toString();
-				var decimalInValue = value.indexOf('.') > -1;
-				
-				// Display trailing decimal if value is "0."
-				if (digitService.decimalPresent() && !decimalInValue)
-					value += '.';
-					
-				return value;
-			} else {
+			if (_resultPristine)
 				return _result;
-			}
+				
+			var value = inputService.currentValue().toString();
+			var decimalInValue = value.indexOf('.') > -1;
+			// Display trailing decimal if value is "0."
+			if (inputService.decimalPresent() && !decimalInValue)
+				value += '.';
+				
+			return value;
 		};
 		
 		vm.getOperator = function() {
@@ -63,17 +64,21 @@
 		};
 		
 		vm.getStoredOperand = function() {
-			if (digitService.currentOperand() === 0) return '';
+			if (inputService.currentOperand() === 0) return '';
 			
-			return digitService.getOperands()[0].toString();
+			return inputService.getOperands()[0].toString();
 		};
 		
 		vm.press = function(digit) {
-			digitService.push(digit);
+			if (_resultPristine && _operator === '')
+				vm.clear();
+			_resultPristine = false;
+			
+			inputService.push(digit);
 		};
 		
 		vm.clear = function() {
-			digitService.allClear();
+			inputService.allClear();
 			_operator = '';
 			_result = '';
 		};
@@ -81,27 +86,47 @@
 		// Operator buttons
 		vm.plus = function() {
 			_operator = '+';
-			digitService.shift();
+			inputService.shift(true);
 		};
 		vm.minus = function() {
 			_operator = '-';
-			digitService.shift();
+			inputService.shift(true);
 		};
 		vm.multiply = function() {
 			_operator = '*';
-			digitService.shift();
+			inputService.shift(true);
 		};
 		vm.divide = function() {
 			_operator = '/';
-			digitService.shift();
+			inputService.shift(true);
 		};
+		vm.negate = function() {
+			_resultPristine = false;
+			inputService.negate();
+		};
+		vm.back = function() {
+			if (!_resultPristine)
+				inputService.backSpace();
+		}
 		
 		vm.equals = function() {
+			if (_operator === '') return;
+			
 			_result = arithmeticService.compute(
-				digitService.getOperands()[0],
-				digitService.getOperands()[1],
+				inputService.getOperands()[0],
+				inputService.getOperands()[1],
 				_operator
 			);
+			historyService.push({
+				op0: inputService.getOperands()[0],
+				op1: inputService.getOperands()[1],
+				operator: _operator 
+			});
+			
+			inputService.allClear();
+			inputService.push(_result);
+			_operator = '';
+			_resultPristine = true;
 		};
 	}]);
 })();

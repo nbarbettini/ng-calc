@@ -15,96 +15,99 @@
         data-ng-keydown="vm.controlKeyHandler($event)"
         data-ng-keypress="vm.keyHandler($event)">
     <div class="container">
-      <div class="jumbotron">
-        <h1>AngularJS Calculator</h1>
+      <h1 class="text-center">
+        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> AngularJS Calculator
       </div>
-  	  <div class="container">
-  		  <div class="row">
-  			  <div class="col-xs-12">
-                <div class="well well-lg calculator-display">
-                    <div>
-                        <span class="h2 pull-left">
-                            <span>{{vm.getStoredOperand()}}</span>
-                            <span data-ng-bind-html="vm.getOperator()"></span>
-                        </span>
-                        <span class="h2 pull-right">{{vm.getDigits()}}</span>
+      
+      <div class="row">
+          <div class="col-md-offset-3 col-md-6 col-sm-12">
+      		  <div class="row">
+      			  <div class="col-xs-12">
+                    <div class="well well-lg calculator-display">
+                        <div>
+                            <span class="h2 pull-left">
+                                <span>{{vm.getStoredOperand()}}</span>
+                                <span data-ng-bind-html="vm.getOperator()"></span>
+                            </span>
+                            <span class="h2 pull-right">{{vm.getDigits()}}</span>
+                        </div>
                     </div>
-                </div>
-  			  </div>
-  		  </div>
-  		  <div class="row">
-  			  <div class="container calculator-controls">
-  				  <div class="row">
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.clear()">AC</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block">+/-</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block">%</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.divide()">&divide;</button>
-  					  </div>
-  				  </div>
-  				  <div class="row">
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(7)">7</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(8)">8</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(9)">9</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.multiply()">&times;</button>
-  					  </div>
-  				  </div>
-  				  <div class="row">
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(4)">4</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(5)">5</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(6)">6</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.minus()">-</button>
-  					  </div>
-  				  </div>
-  				  <div class="row">
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(1)">1</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(2)">2</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block" data-ng-click="vm.press(3)">3</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-lg btn-block btn-warning" data-ng-click="vm.plus()">+</button>
-  					  </div>
-  				  </div>
-  				  <div class="row">
-  					  <div class="col-xs-6">
-  						  <button type="button" class="btn btn-default btn-block" data-ng-click="vm.press(0)">0</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-default btn-block" data-ng-click="vm.press('.')">.</button>
-  					  </div>
-  					  <div class="col-xs-3">
-  						  <button type="button" class="btn btn-default btn-block btn-primary" data-ng-click="vm.equals()">=</button>
-  					  </div>
-  				  </div>
-  			  </div>
-  		  </div>
-  	  </div>
-    </div>
+      			  </div>
+      		  </div>
+      		  <div class="row">
+      			  <div class="col-xs-12 calculator-controls">
+      				  <div class="row">
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.clear()">AC</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.negate()">+/-</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.back()">Bksp</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block btn-warning" data-ng-click="vm.divide()">&divide;</button>
+      					  </div>
+      				  </div>
+      				  <div class="row">
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(7)">7</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(8)">8</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(9)">9</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block btn-warning" data-ng-click="vm.multiply()">&times;</button>
+      					  </div>
+      				  </div>
+      				  <div class="row">
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(4)">4</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(5)">5</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(6)">6</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block btn-warning" data-ng-click="vm.minus()">-</button>
+      					  </div>
+      				  </div>
+      				  <div class="row">
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(1)">1</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(2)">2</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(3)">3</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block btn-warning" data-ng-click="vm.plus()">+</button>
+      					  </div>
+      				  </div>
+      				  <div class="row">
+      					  <div class="col-xs-6">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press(0)">0</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.press('.')">.</button>
+      					  </div>
+      					  <div class="col-xs-3">
+      						  <button type="button" class="btn btn-default btn-lg btn-block btn-primary" data-ng-click="vm.equals()">=</button>
+      					  </div>
+      				  </div>
+      			  </div>
+      		  </div>
+          </div>
+      </div>
+    </div> <!-- /outer container -->
     
     <!-- Angular libraries -->
     <script src="scripts/angular.min.js"></script>
@@ -114,7 +117,8 @@
       
     <script src="app/app.js"></script>
     <script src="app/controllers/calculatorController.js"></script>
-    <script src="app/services/digitService.js"></script>
+    <script src="app/services/inputService.js"></script>
     <script src="app/services/arithmeticService.js"></script>
+    <script src="app/services/historyService.js"></script>
   </body>
 </html>
