@@ -30,12 +30,10 @@
 		
 		function isValid(item) {
 			if (typeof(item) !== 'object') return false;
-			if (!item['op0'] || isNaN(parseFloat(item['op0']))) return false;
-			if (!item['op1'] || isNaN(parseFloat(item['op1']))) return false;
-			if (!item['operator'] || 
-				_allowedOperators.indexOf(item['operator']) === -1)
-				return false;
-			if (!item['result'] || isNaN(parseFloat(item['result']))) return false;
+			if (isNaN(parseFloat(item['op0']))) return false;
+			if (isNaN(parseFloat(item['op1']))) return false;
+			if (_allowedOperators.indexOf(item['operator']) === -1) return false;
+			if (isNaN(parseFloat(item['result']))) return false;
 			
 			return true;
 		}
