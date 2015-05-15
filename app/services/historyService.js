@@ -12,6 +12,8 @@
 			if (!isValid(item)) return false;
 			
 			_stack.push(item);
+			console.log(item.op0 + ' ' + item.operator + ' ' + item.op1 + ' = ' + item.result);
+			
 			return true;
 		};
 		
@@ -33,7 +35,8 @@
 			if (!item['operator'] || 
 				_allowedOperators.indexOf(item['operator']) === -1)
 				return false;
-				
+			if (!item['result'] || isNaN(parseFloat(item['result']))) return false;
+			
 			return true;
 		}
 		

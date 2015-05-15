@@ -86,28 +86,39 @@
 		
 		// Operator buttons
 		vm.plus = function() {
+			_chain();			
 			_operator = '+';
 			inputService.shift(true);
 		};
 		vm.minus = function() {
+			_chain();
 			_operator = '-';
 			inputService.shift(true);
 		};
 		vm.multiply = function() {
+			_chain();
 			_operator = '*';
 			inputService.shift(true);
 		};
 		vm.divide = function() {
+			_chain();
 			_operator = '/';
 			inputService.shift(true);
 		};
 		vm.negate = function() {
+			_chain();
 			_resultPristine = false;
 			inputService.negate();
 		};
 		vm.back = function() {
 			if (!_resultPristine)
 				inputService.backSpace();
+		}
+		
+		var _chain = function() {
+			// Support operator chaining
+			if (_operator !== '' && inputService.currentOperand() === 1)
+				vm.equals();
 		}
 		
 		vm.equals = function() {
@@ -121,7 +132,8 @@
 			historyService.push({
 				op0: inputService.getOperands()[0],
 				op1: inputService.getOperands()[1],
-				operator: _operator 
+				operator: _operator,
+				result: _result
 			});
 			
 			inputService.allClear();
